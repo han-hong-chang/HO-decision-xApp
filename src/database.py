@@ -93,7 +93,7 @@ class DATABASE(object):
             query = """from(bucket:"{}") |> range(start: -5s) |> filter(fn: (r) => """.format(self.bucket)
             query += """r._measurement == "UeMetrics" and """
             query += """r.Viavi_UE_id == "{}" ) """.format(Id)
-            query += """|> filter(fn: (r) => r["_field"] == "Viavi_Nb1_id" or r["_field"] == "Viavi_Nb1_Rsrp" or r["_field"] == "Viavi_Nb2_id" or r["_field"] == "Viavi_Nb2_Rsrp")"""
+            query += """|> filter(fn: (r) => r["_field"] == "Viavi_Meas1_id" or r["_field"] == "Viavi_Meas1_Rsrp" or r["_field"] == "Viavi_Meas2_id" or r["_field"] == "Viavi_Meas2_Rsrp")"""
             query += """|> limit(n: 1) """
             query += """|> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")"""
         

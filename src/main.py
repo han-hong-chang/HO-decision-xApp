@@ -115,11 +115,12 @@ def NBCell_decision(ue):
         Extract neighbor cell id for a given UE
     """
     df = db.read_data(nbdecision=ue)
-    nb1_rsrp = df["Viavi_Nb1_Rsrp"].values[0]
-    nb2_rsrp = df["Viavi_Nb2_Rsrp"].values[0]
+    logger.debug("data: {}".format(df))
+    nb1_rsrp = df["Viavi_Meas1_Rsrp"].values[0]
+    nb2_rsrp = df["Viavi_Meas2_Rsrp"].values[0]
 
-    nb1_id = df["Viavi_Nb1_id"].values[0]
-    nb2_id = df["Viavi_Nb2_id"].values[0]
+    nb1_id = df["Viavi_Meas1_id"].values[0]
+    nb2_id = df["Viavi_Meas2_id"].values[0]
 
     if nb1_rsrp > nb2_rsrp:
         return nb1_id
